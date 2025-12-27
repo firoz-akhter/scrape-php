@@ -257,6 +257,11 @@ class BlogScraperController extends Controller
                 'categories.*.name' => 'required_with:categories|string',
                 'categories.*.url' => 'required_with:categories|string',
                 'full_content' => 'sometimes|string',
+
+                'is_optimized' => 'sometimes|boolean',
+                'reference_articles' => 'sometimes|array',
+                'reference_articles.*.title' => 'required_with:reference_articles|string',
+                'reference_articles.*.url' => 'required_with:reference_articles|string|url',
             ]);
 
             // Update article
