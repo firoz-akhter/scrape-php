@@ -21,10 +21,22 @@ class CreateArticlesTable extends Migration
             $table->date('published_at')->nullable();
             $table->json('categories')->nullable(); // Store categories as JSON
             $table->text('full_content')->nullable();
-            $table->timestamps();
+            // $table->timestamps();
             
+            
+            // $table->index('published_at');
+            // $table->index('created_at');
+
+
+            $table->boolean('is_optimized')->default(false);
+            $table->json('reference_articles')->nullable();
+            $table->date('optimized_at')->nullable();
+
+            $table->timestamps();
+
             $table->index('published_at');
             $table->index('created_at');
+            $table->index('is_optimized');
         });
     }
 

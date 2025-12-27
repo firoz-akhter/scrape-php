@@ -33,12 +33,18 @@ class Article extends Model
         'date',
         'published_at',
         'categories',
-        'full_content'
+        'full_content',
+        'is_optimized',          // NEW
+        'reference_articles',     // NEW
+        'optimized_at',          // NEW 
     ];
 
     protected $casts = [
         'published_at' => 'date',
         'categories' => 'array', // Automatically cast JSON to array
+        // 'is_optimized' => 'boolean',      // NEW
+        'reference_articles' => 'array',  // NEW
+        'optimized_at' => 'datetime', 
     ];
 
     /**
@@ -74,6 +80,22 @@ class Article extends Model
     // }
 
     /**
+     * Scope: Get only optimized articles
+     */
+    // public function scopeOptimized($query)
+    // {
+    //     return $query->where('is_optimized', true);
+    // }
+
+    /**
+     * Scope: Get unoptimized articles
+     */
+    // public function scopeUnoptimized($query)
+    // {
+    //     return $query->where('is_optimized', false);
+    // }
+
+    /**
      * Get all unique category names from database
      */
     // public static function getAllCategories()
@@ -92,5 +114,17 @@ class Article extends Model
     //     }
 
     //     return array_values($allCategories);
+    // }
+
+
+    // public function markAsOptimized($referenceArticles, $model)
+    // {
+    //     $this->update([
+    //         'is_optimized' => true,
+    //         'reference_articles' => $referenceArticles,
+    //         'optimized_at' => now(),
+    //         'optimization_model' => $model,
+    //         'optimization_version' => $this->optimization_version + 1
+    //     ]);
     // }
 }
